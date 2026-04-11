@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Granja El Arte</title>
+  <script>
+	  // Immediately set the theme before rendering
+	  /*(function() {
+		const savedTheme = localStorage.getItem('theme');
+		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+		const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+		document.documentElement.setAttribute('data-theme', theme);
+	  })();*/
+	</script>
+  <style>
+    :root {
+      --bg-light: rgb(250,250,250);
+      --bg-dark: rgb(10,10,10);
+	  --card-light:rgb(255,255,255);
+	  --card-dark:rgb(60,60,60);
+      --text-light: rgb(0,0,0);
+      --text-dark: rgb(200,200,200);
+      --primary: rgb(150,150,150);
+      --secondary: rgb(180,180,180);
+    }
+
+    [data-theme="dark"] {
+      --bg-light: var(--bg-dark);
+      --text-light: var(--text-dark);
+      --card-light: var(--card-dark);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+   header {
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-light);
+  border-bottom: 1px solid #eee;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+}
+
+.logo {
+  height: 6rem;
+}
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+	  cursor:pointer;
+    }
+	
+nav ul li {
+  position: relative;
+}
+
+nav ul li:hover > ul,
+nav ul li ul:hover {
+  display: block;
+}
+
+nav ul li ul {
+  display: none;
+  position: absolute;
+  background: var(--bg-light);
+  top: 100%; /* No gap */
+  left: 0;
+  padding: 0.5rem 0.5rem;
+  border: 1px solid #ddd;
+  z-index: 1000;
+}
+
+
+    .theme-toggle {
+      cursor: pointer;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .hero {
+      display: grid;
+      place-items: center;
+	  padding: 2rem;
+	  padding-top:6rem;
+	  padding-bottom:6rem;
+      background: linear-gradient(135deg, #4f46e5, #10b981);
+      color: white;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 3rem;
+    }
+
+    @media(min-width: 768px) {
+	  .grid-3 {
+		  grid-template-columns: repeat(2, 1fr);
+		  grid-auto-rows: auto;
+			align-items: center;
+		}
+		.hero {
+		  padding-top:12rem;
+		  padding-bottom:12rem;
+		}
+    }
+
+    .card {
+      background: var(--card-light);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+	  max-width:25rem;
+	  text-align:center;
+    }
+    .card-img {
+		width:100%;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+	  border:1px solid black;
+    }
+
+    footer {
+		color:white;
+      background: #000;
+      text-align: center;
+      padding: 0.05rem;
+      margin-top: 0.05rem;
+    }
+
+    /* Responsive Typography */
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+    h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+    p  { font-size: clamp(1rem, 2vw, 1.2rem); }
+	
+	    .cool-button {
+      background: linear-gradient(135deg, #6e8efb, #a777e3);
+      border: none;
+      color: white;
+      padding: 14px 28px;
+      font-size: 16px;
+      font-family: 'Segoe UI', sans-serif;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease-in-out;
+	  margin-top:5px;
+    }
+
+    .cool-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(135deg, #5e7dfb, #9a66e3);
+    }
+
+    .cool-button:active {
+      transform: translateY(1px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+  </style>
+</head>
+<body>
+<header>
+  <img src="logo.svg" class="logo">
+</header>
+
+
+<section class="hero" style="background-image: url('background.png'), linear-gradient(135deg, #4f46e5, #10b981); background-size: cover; background-position: center; width: 100%;">
+    <div style="position:absolute;left:0;width:100%;">
+      <h1>Bienvenidos Al Futuro Del Arte</h1>
+      <p>Granja, Mercaderia, Liderazgo.</p>
+    </div>
+  </section>
+
+  <section class="container">
+    <h2 style="margin-bottom: 1rem;">¡Descubre Nuestros Productos!</h2>
+	<div class="grid grid-3">
+	  <div class="card">
+		<img class="card-img" src="pitaya.png"></img>
+        <h3>Pitaya (Fruta del Drag&oacute;n)</h3>
+        <p>La pitaya, también conocida como fruta del dragón, es un fruto exótico con múltiples beneficios para la salud.</p>
+		<!--<button class="cool-button" onclick="window.open('pitaya.html', '_blank')"><b>M&aacute;s</b></button>-->
+		<button class="cool-button" onclick="window.open('https://wa.me/595971436560', '_blank')"><b>Whatsapp</b></button>
+      </div>
+    </div>
+  </section>
+  <section class="container">
+    <h2 style="margin-bottom: 1rem;">¡Descubre Nuestros Cursos!</h2>
+    <div class="grid grid-3">
+      <div class="card">
+		<img class="card-img" src="podcast.png"></img>
+        <h3>Podcast en Ledaschaft</h3>
+        <p>Durch die Vermittlung der 21 Gesetze für Leiterschaft fördern wir authentische, transparente und freundschaftliche Kommunikation in Gruppen.</p>
+		<button class="cool-button" onclick="window.open('https://www.youtube.com/@ledaschaftkunst', '_blank')"><b>Anh&ouml;ren</b></button>
+      </div>
+      <div class="card">
+		<img class="card-img" src="leadership.png"></img>
+        <h3>Entrenamiento en Liderazgo</h3>
+        <p>Mejora tu liderazgo con sessiones con el entrenador de liderazgo Ewald Driedger</p>
+		<!--<button class="cool-button" onclick="window.open('liderazgo.html', '_blank')"><b>M&aacute;s</b></button>-->
+		<button class="cool-button" onclick="window.open('https://wa.me/595971436560', '_blank')"><b>Whatsapp</b></button>
+      </div>
+	  <div class="card">
+		<!--<img class="card-img" src="pitaya.png"></img>-->
+		<video width="600" class="card-img" controls>
+		  <source src="vid.mp4" type="video/mp4">
+		  Dein Browser unterstützt kein Video.
+		</video>
+        <h3>Kurs: Wie kann ich Zuhause selber Pitayas Produzieren?</h3>
+        <p>Starte deine eigene Pitaya-Produktion ganz einfach von zuhause aus. Lerne Schritt für Schritt Anbau, Pflege und Ernte dieser exotischen Frucht. Freuen uns f&uuml;r deine Beteiligung!</p>
+		<button class="cool-button" onclick="window.open('pitayacourse.html', '_blank')"><b>Beginnen</b></button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a style="font-size:8pt;">© 2026 Granja El Arte. Todos derechos reservados.</a>
+  </footer>
+
+  <script>
+	  function toggleTheme() {
+		const root = document.documentElement;
+		const currentTheme = root.getAttribute('data-theme');
+		const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+		root.setAttribute('data-theme', newTheme);
+		localStorage.setItem('theme', newTheme);
+	  }
+	</script>
+
+</body>
+</html>
