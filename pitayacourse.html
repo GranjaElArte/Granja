@@ -126,7 +126,7 @@ nav ul li ul {
 
     @media(min-width: 768px) {
 	  .grid-3 {
-		  grid-template-columns: repeat(2, 1fr);
+		  grid-template-columns: repeat(1, 1fr);
 		  grid-auto-rows: auto;
 			align-items: center;
 		}
@@ -138,11 +138,11 @@ nav ul li ul {
 
     .card {
       background: var(--card-light);
-      padding: 1.5rem;
+      padding: .5rem;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       transition: transform 0.3s;
-	  max-width:80rem;
+	  max-width:300rem;
 	  text-align:center;
 	  margin-bottom:3rem;
     }
@@ -151,11 +151,8 @@ nav ul li ul {
 	  height: auto;
 	}
 
-	.cardvideo {
-	  width: 100%;
-	  height: auto;
-	  display: block;
-	}
+.cardvideo { width: 100%; aspect-ratio: 16/9; }
+
     .card:hover {
       transform: translateY(-5px);
 	  border:1px solid black;
@@ -280,6 +277,7 @@ nav ul li ul {
   margin-bottom:10px;
 }
 
+
   </style>
 </head>
 <body onload="onload();">
@@ -321,16 +319,16 @@ nav ul li ul {
 		//localStorage.removeItem('code');
 
 		var sessiones={
-			"1":{"date":new Date("2026-05-4"),"zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}},
-			"2":{"date":new Date("2026-06-1"),"zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}},
-			"3":{"date":new Date("2026-07-6"),"zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}},
-			"4":{"date":new Date("2026-08-3"),"zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}},
-			"5":{"date":new Date("2026-09-7"),"zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}},
-			"6":{"date":new Date("2026-10-5"),"zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}},
-			"7":{"date":new Date("2026-11-2"),"zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}},
-			"8":{"date":new Date("2026-12-7"),"zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}},
-			"9":{"date":new Date("2027-01-4"),"zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}},
-			"10":{"date":new Date("2027-02-1"),"zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}}
+			"1":{"date":new Date("2026-05-4"),"VideoLink":"78zdigrDY7M","zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}},
+			"2":{"date":new Date("2026-06-1"),"VideoLink":"","zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}},
+			"3":{"date":new Date("2026-07-6"),"VideoLink":"","zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}},
+			"4":{"date":new Date("2026-08-3"),"VideoLink":"","zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}},
+			"5":{"date":new Date("2026-09-7"),"VideoLink":"","zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}},
+			"6":{"date":new Date("2026-10-5"),"VideoLink":"","zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}},
+			"7":{"date":new Date("2026-11-2"),"VideoLink":"","zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}},
+			"8":{"date":new Date("2026-12-7"),"VideoLink":"","zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}},
+			"9":{"date":new Date("2027-01-4"),"VideoLink":"","zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}},
+			"10":{"date":new Date("2027-02-1"),"VideoLink":"","zoom":{"date":new Date("2026-04-08T14:30:00"),"link":""}}
 		};
 		
 		let hour = new Date().getHours();
@@ -385,13 +383,22 @@ nav ul li ul {
 			}
 		}
 		
-		function loadVideo(el, i){
+		/*function loadVideo(el, i){
 			el.innerHTML = `
 			<video width="600" class="cardvideo" controls autoplay>
 				<source src="pitayacurso${i}.mp4" type="video/mp4"
 				onerror="this.parentElement.parentElement.innerHTML='<br><br>Video no Disponible :(<br><br><br>';">
 			</video>`;
-		}
+		}*/
+	  function loadVideo(el, sessionId){
+  el.innerHTML = `
+  <iframe width="600" height="338" class="cardvideo"
+    src="https://www.youtube.com/embed/${sessiones[sessionId].VideoLink}?autoplay=1"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>`;
+}
 	
 		function onload(){
 			var data='';
